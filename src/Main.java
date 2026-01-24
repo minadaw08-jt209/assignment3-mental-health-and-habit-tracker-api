@@ -1,15 +1,24 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import controller.ActivityController;
+import model.Activity;
+import model.Habit;
+import model.MoodEntry;
+
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        ActivityController c = new ActivityController();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        Activity habit = new Habit(0, "Morning Walk", 1, LocalDate.now(), 5);
+        Activity mood  = new MoodEntry(0, "Daily Mood",  1, LocalDate.now(), 8);
+
+        c.create(habit);
+        c.create(mood);
+
+        c.list();
+
+        c.create(new MoodEntry(0, "Bad Mood", 1, LocalDate.now(), 99));
+
+        c.create(new MoodEntry(0, "Daily Mood Again", 1, LocalDate.now(), 7));
     }
 }
