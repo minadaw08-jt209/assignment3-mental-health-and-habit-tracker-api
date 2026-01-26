@@ -20,10 +20,8 @@ CREATE TABLE activities (
                             habit_streak INT,
                             mood_level   INT,
 
-    -- business rule: daily summary per type (1 HABIT + 1 MOOD per day)
                             CONSTRAINT uq_user_date_type UNIQUE (user_id, entry_date, type),
 
-    -- subtype rules
                             CONSTRAINT ck_subtype CHECK (
                                 (type='HABIT' AND habit_streak IS NOT NULL AND habit_streak >= 0 AND mood_level IS NULL)
                                     OR
