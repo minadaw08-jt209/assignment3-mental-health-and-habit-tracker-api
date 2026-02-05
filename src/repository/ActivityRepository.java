@@ -1,5 +1,7 @@
 package repository;
 
+import repository.interfaces.CrudRepository;
+
 import exception.DatabaseOperationException;
 import model.Activity;
 import model.Habit;
@@ -18,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ActivityRepository {
+public class ActivityRepository implements CrudRepository<Activity> {
 
     public int create(Activity a) {
         String sql = """
@@ -111,7 +113,7 @@ public class ActivityRepository {
         if (a instanceof Habit h) {
             ps.setInt(5, h.getStreak());
             ps.setNull(6, Types.INTEGER);
-        } else { // MoodEntry
+        } else {
             MoodEntry m = (MoodEntry) a;
             ps.setNull(5, Types.INTEGER);
             ps.setInt(6, m.getMoodLevel());
@@ -131,3 +133,4 @@ public class ActivityRepository {
         return new MoodEntry(id, name, userId, date, rs.getInt("mood_level"));
     }
 }
+
