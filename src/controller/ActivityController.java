@@ -1,21 +1,27 @@
 package controller;
 
 import exception.DatabaseOperationException;
-import exception.DuplicateResourceException;
 import exception.InvalidInputException;
 import exception.ResourceNotFoundException;
 import model.Activity;
-import service.ActivityService;
+import service.interfaces.IActivityService;
 
 public class ActivityController {
-    private final ActivityService service = new ActivityService();
+
+    private final IActivityService service;
+
+    public ActivityController(IActivityService service) {
+        this.service = service;
+    }
 
     private static String ok(String m) {
         return "{\"status\":\"OK\",\"message\":\"" + esc(m) + "\"}";
     }
+
     private static String err(String type, String m) {
         return "{\"status\":\"ERROR\",\"errorType\":\"" + esc(type) + "\",\"message\":\"" + esc(m) + "\"}";
     }
+
     private static String esc(String s) {
         return s == null ? "" : s.replace("\"", "\\\"");
     }
@@ -47,4 +53,3 @@ public class ActivityController {
         }
     }
 }
-
