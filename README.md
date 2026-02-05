@@ -1,5 +1,7 @@
 # Mental Health & Habit Tracker API
 
+## Assignment 3 – JDBC & OOP API
+
 This project is a **Mental Health & Habit Tracker API** implemented in Java to demonstrate
 advanced Object-Oriented Programming concepts together with database interaction using JDBC.
 
@@ -125,3 +127,68 @@ Using JDBC improved my understanding of how Java applications interact with rela
 One challenge was correctly handling database constraints and converting SQL errors into meaningful
 custom exceptions. Overall, this project strengthened my understanding of OOP principles,
 multi-layer architecture, and database-driven applications.
+
+---
+
+## Assignment 4 – SOLID Architecture & Advanced OOP (Milestone 2)
+
+In this milestone, the project was **refactored and extended** to follow **SOLID principles** and demonstrate advanced Java features.
+
+---
+
+## SOLID Principles
+
+### Single Responsibility Principle (SRP)
+- **Controller** handles input/output only
+- **Service** handles validation and business rules
+- **Repository** handles database access
+- **Utils** handle sorting and reflection
+
+Each class has one clear responsibility.
+
+---
+
+### Open–Closed Principle (OCP)
+- The abstract class `Activity` can be extended with new activity types without modifying existing logic.
+- Polymorphism allows new subclasses to work through base class references.
+
+---
+
+### Liskov Substitution Principle (LSP)
+- `Habit` and `MoodEntry` correctly substitute `Activity`.
+- All subclasses respect the base class contract and behave consistently.
+
+---
+
+### Interface Segregation Principle (ISP)
+- Small, focused interfaces are used:
+    - `Validatable` – validation logic
+    - `Trackable` – score calculation
+
+Classes implement only the interfaces they need.
+
+---
+
+### Dependency Inversion Principle (DIP)
+- Controllers depend on **service interfaces**, not implementations.
+- Services depend on **repository interfaces (`CrudRepository<T>`)**, not concrete classes.
+- Dependencies are injected through constructors.
+
+---
+
+## Advanced Java Features
+
+### Generics
+A generic CRUD interface is used in the repository layer:
+
+CrudRepository<T>
+
+---
+
+## Screenshots
+### Program Output
+![Program Output](docs/screenshots/output2.png)
+
+### Project Structure
+![Project Structure](docs/screenshots/structure2.png)
+
